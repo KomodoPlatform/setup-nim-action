@@ -47,6 +47,29 @@ async function installNim(version: string) {
       home = process.env["USERPROFILE"] || "";
       const dlls = path.join(home, ".choosenim", "downloads", "dlls.zip");
       fs.unlinkSync(dlls);
+
+      proc.exec(
+        `choosenim.exe -v`,
+        (err: any, stdout: string, stderr: string) => {
+          if (err) {
+            core.error(err);
+            throw err;
+          }
+          core.info(stdout);
+        }
+      );
+
+      proc.exec(
+        `choosenim -v`,
+        (err: any, stdout: string, stderr: string) => {
+          if (err) {
+            core.error(err);
+            throw err;
+          }
+          core.info(stdout);
+        }
+      );
+
     }
 
     proc.exec(
