@@ -42,6 +42,15 @@ async function installNim(version: string) {
     }
     core.info(stdout);
 
+    let home = "";
+    if (process.platform === "win32") {
+      home = process.env["USERPROFILE"] || "";
+    } else {
+      home = process.env["HOME"] || "";
+    }
+    const dlls = path.join(home, ".choosenim", "downloads", "dlls.zip");
+    fs.unlinkSync(dlls)
+
     proc.exec(
       `choosenim ${version}`,
       (err: any, stdout: string, stderr: string) => {
