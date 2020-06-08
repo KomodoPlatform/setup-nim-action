@@ -36,5 +36,5 @@ jobs:
       - uses: actions/checkout@v1
       - uses: ./
         with:
-          nim-version: '1.0.0'
+          nim-version: 'devel'
         continue-on-error: true
